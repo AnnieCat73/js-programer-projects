@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Off-canvas menu</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+      rel="stylesheet"
+    />
+    <!--<link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styles.css" />-->
+    <style>
+      body {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        height: 100vh;
+      }
+
+      .container {
+        width: 40%;
+        background-color: rgb(36, 143, 137);
+        max-height: 50rem;
+        
+        
+        
+        
+      }
+      .btn {
+        background-color: rgb(3, 3, 32);
+        border: 3px solid blue;
+        color: rgb(30, 194, 139);
+        cursor: pointer;
+      }
+      .menu-list li {
+        margin-bottom: 1em;
+        list-style: none;
+      }
+
+      .off-canvas-menu {
+        display: none;
+      }
+
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        background: rgb(19, 19, 53);
+        width: 100%;
+        height: 100%;
+        gap: .5em;
+        
+        
+      }
+
+      .main-content {
+        padding: 5rem 5rem 5rem 5rem;
+      }
+
+      .menu-list li {
+        margin: 0 auto;
+      }
+      .menu-list li a {
+        
+        text-decoration: none;
+        color:azure;
+        
+      }
+
+      .flex {
+        flex-basis: 60%;
+        
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="main-content" id="main-content">
+        <h1>Click the button to open the sidebar!</h1>
+        <button class="btn" id="button">Menu</button>
+      </div>
+
+      <div class="off-canvas-menu" id="off">
+        <ul class="menu-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Work</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <body>
+    <script src="../off-canvas-menu-01.starter/js/mytry.js"></script>
+  </body>
+</html>
