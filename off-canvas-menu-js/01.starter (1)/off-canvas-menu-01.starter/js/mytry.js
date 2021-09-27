@@ -1,15 +1,19 @@
-const btn = document.getElementById("button");
-console.log(btn)
-const container = document.getElementById("container");
-const offCanvas = document.getElementById("off");
-const mainContent = document.getElementById("main-content");
-btn.addEventListener("click", () => {
-  offCanvas.classList.remove("off-canvas-menu");
-  container.style.display = "flex";
-  mainContent.style.order = "2";
-  mainContent.style.transform = "translateX(90px)";
-  mainContent.style.paddingLeft = "0";
-  //move main content
-  offCanvas.style.flexBasis = "30%"
-  
+const button = document.querySelector(".btn");
+const body = document.body;
+
+/*button.addEventListener("click", function (e) {
+  body.classList.add("move");
 });
+
+button.addEventListener("click", function (e) {
+  body.classList.add("move");
+});*/
+
+button.addEventListener("click", function (e) {
+  if (body.classList.contains("move")) {
+    body.classList.remove("move");
+  } else {
+    body.classList.add("move");
+  }
+});
+
