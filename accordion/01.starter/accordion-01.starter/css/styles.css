@@ -87,6 +87,7 @@ a:active {
  * ==================
  */
 
+
 .accordion__header button {
   display: flex;
   justify-content: space-between;
@@ -103,6 +104,8 @@ a:active {
   text-transform: uppercase;
   font-weight: bold;
 }
+
+
 
 /* Indicators */
 .accordion__indicator > * {

@@ -87,6 +87,12 @@ a:active {
  * ==================
  */
 
+/* Opens the accordion//////////////////// */
+.accordion.is-open .accordion-content {
+  display: grid;
+}
+/*///////////*/
+
 .accordion-header button {
   display: flex;
   justify-content: space-between;
