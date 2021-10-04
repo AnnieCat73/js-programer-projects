@@ -1,0 +1,37 @@
+.accordion-container {
+  max-width: 40rem;
+  margin: 5rem auto;
+  border: 1px grey solid;
+  padding: 1rem;
+  
+}
+
+.accordion {
+  background-color: plum;
+  border-radius: 5px 5px 0 0;
+  padding: 1rem;
+  border: 2px solid black;
+}
+
+.accordion:hover {
+  background-color: #ccc; 
+  cursor: pointer;
+}
+
+.accordion h2:hover {
+  background-color: #ccc; 
+  cursor: pointer;
+}
+
+.accordion-content {
+  padding: .5rem;
+  font-weight: 700;
+  font-size: large;
+  background-color: powderblue;
+  border-radius: 0 0 5px 5px;
+  display: none;
+}
+
+.is-open {
+  display: block;
+}
