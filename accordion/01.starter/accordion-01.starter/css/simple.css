@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 40rem;
+  margin: 5rem auto;
+  border: 1px grey solid;
+  padding: 1rem;
+  
+}
+
+.btn {
+  background-color: burlywood;
+  display: block;
+  width: 100%;
+  padding: 1.3em;
+  font-size: 1rem;
+  text-align: left;
+  color: white;
+  font-weight: 700;
+  transition: 0.4s ease;
+}
+
+.active {/*this will be used for button in Js*/
+  background-color: gray;
+}
+
+.panel {
+  padding: 0px 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: 0.3s ease;
+}
+
+.panel p {
+  text-align: justify;
+}
