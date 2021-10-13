@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabbed Component</title>
+</head>
+<style>
+  .tab {
+    filter: grayscale(75%) brightness(0.9);
+    /*not selected*/
+  }
+
+  .tab.selected {
+    /* when a tab is selected*/
+    filter: none;
+    background-color: white;
+  }
+
+  .tab-content {
+    /* Hides tab-content when it is not selected */
+    display: none;
+  }
+
+  .tab-content.is-selected {
+    /* Show the selected tab-content */
+    display: block;
+  }
+</style>
+
+<body>
+
+  <div class="tabby">
+    <div class="tabs">
+      <button class="tab is-selected">Tab 1</button>
+      <!--is-selected-->
+      <button class="tab">Tab 2</button>
+      <button class="tab">Tab 3</button>
+    </div>
+
+    <div class="tab-contents">
+      <section class="tab-content is-selected">Content 1</section>
+      <!--is-selected-->
+      <section class="tab-content">Content 2</section>
+      <section class="tab-content">Content 3</section>
+    </div>
+  </div>
+
+  <script src="js/mytry.js"></script>
+</body>
+
+</html>
