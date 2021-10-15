@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabbed Component</title>
+</head>
+<style>
+  .tab {
+    background-color: grey;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab.is-selected {
+    background-color: white;
+  }
+
+  .tab.content.is-selected {
+    display: block;
+  }
+</style>
+
+<body>
+
+  <div class="tabby">
+    <div class="tabs">
+      <button class="tab is-selected" data-target="content-1">Tab 1</button>
+      <button class="tab" data-target="content-2">Tab 2</button>
+      <button class="tab" data-target="content-3">Tab 3</button>
+    </div>
+    <div class="tab-contents">
+      <div class="tab-content is-selected" id="content-1">Content 1</div>
+      <div class="tab-content" id="content-2">Content 2</div>
+      <div class="tab-content" id="content-3">Content 3</div>
+    </div>
+
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
