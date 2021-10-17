@@ -94,11 +94,11 @@ the second slide, we can set left of the third slide to be the width of
 two slides. If the width is 800px, left should be 1600px.
 
 /* This code works if the width of one slide is 800px
-.carousel__slide:nth-child(2) {
+.carousel-slide:nth-child(2) {
   left: 800px;
 }
 
-.carousel__slide:nth-child(3) {
+.carousel-slide:nth-child(3) {
   left: 1600px;
 }
 
@@ -138,13 +138,13 @@ object-fit set to cover.
   object-position: center center;
 }
 
-4) Switching slides--I THINK YOU DO THIS IN JS NOT CSS
+4) Switching slides--DO THIS IN JS NOT CSS/getComputedStyle()-SEE BELOW
 
 You can change carousel-contents left property to decide which slide to
 show.
 
-1)To show second slide, set carousel__content's left to -800px
-2)To show third slide, set carousel__content's left to -1600px
+1)To show second slide, set carousel-content's left to -800px
+2)To show third slide, set carousel-content's left to -1600px
 
 
 4) THE DOTS
@@ -161,3 +161,68 @@ dot must use a <button> element.
   <button class="carousel-dot"></button>
   <button class="carousel-dot"></button>
 </div>
+
+
+SWITCHING SLIDES WITH JAVASCRIPT
+
+When a user clicks the right button, the carousel should move to the next
+slide. When they click the left button, the carousel should move to the previous slide.
+
+To do this, we need to differentiate between the left and right buttons.
+Add in HTML:
+
+<div class="carousel">
+  <button class="carousel-button previous-button"> ... </button>
+  <div class="carousel-contents-container"> ... </div>
+  <button class="carousel-button next-button"> ... </button>
+  <div class="carousel-dots"> ... </div>
+</div>*/
+
+//1)GET THE ELEMENTS FOR THIS
+
+const carousel = document.querySelector(".carousel");
+const previousButton = carousel.querySelector(".previous-button");
+const nextButton = carousel.querySelector(".next-button");
+
+
+//WHEN CLICK NEXT BUTTON WE WANT TO SHOW NEXT SLIDE
+//To do this we need to know what's the currently displayed slide
+/*The easiest way to tell JavaScript about the current slide is through
+a class. Since the carousel starts by showing the first slide, we add
+an is-selected class to the first slide.
+
+<ul class="carousel-contents">
+  <li class="carousel-slide is-selected"> ... </li>
+  <li class="carousel-slide"> ... </li>
+  <li class="carousel-slide"> ... </li>
+</ul>*/
+
+//In JS get it by using querySelector
+
+const contents = carousel.querySelector(".carousel-contents");
+
+
+//1a) CLICKING NEXT BUTTON
+nextButton.addEventListener("click", event => {
+  const currentSlide = contents.querySelector(".is-selected");
+  //console.log(currentSlide);when click on nextButton get 
+  //<li class="carousel-slide is-selected">
+
+  //GET TO NEXT SLIDE
+  const nextSlide = currentSlide.nextElementSibling;
+  //console.log(nextSlide);
+
+  //GET THE VALUES FROM 4) ABOVE/ -800px and -1600px TO CHANGE TO NXT SLIDE
+  const destination = getComputedStyle(nextSlide).left;
+  console.log(destination);//will say 800px
+  //use this destination value to set .carousel-content
+  contents.style.left = '-' + destination;//points to contents above
+
+  //THEN NEED TO UPDATE is-selected from currentSlide and add it nextSlide
+  currentSlide.classList.remove("is-selected");
+  nextSlide.classList.add("is-selected");
+})
+
+//1b) CLICKING PREVIOUS BUTTON
+
+
