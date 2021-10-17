@@ -133,7 +133,7 @@ body {
 
 .carousel {
   display: grid;
-  grid-template-columns: 3em 800px 3em;
+  grid-template-columns: 3em 80vw 3em;/*use 80vh for respo*/
   grid-template-rows: 70vh 3em;
   align-items: center;
   grid-gap: 1em;
@@ -178,14 +178,15 @@ body {
   object-position: center center;
 }
 
-/* This code works if the width of one slide is 800px */
-.carousel-slide:nth-child(2) {
+/* TO MAKE IT RESPONSIVE MUST REMOVE THIS IN STEP 11
+AND POSITION SLIDES WITH JS */
+/*.carousel-slide:nth-child(2) {
   left: 800px;
 }
 
 .carousel-slide:nth-child(3) {
   left: 1600px;
-}
+}*/
 
 /**
  * Buttons
