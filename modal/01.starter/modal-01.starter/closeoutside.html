@@ -47,7 +47,7 @@
       line-height: 1.4;
     }
 
-    .modal-is-open .modal-overlay {
+    body.modal-is-open .modal-overlay {
       opacity: 1;
       z-index: 1;
     }
@@ -63,6 +63,11 @@
       /*makes it invisible*/
       z-index: -1;
       /*moves it beneath the main content*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1em;
+      background-color: rgba(0, 0, 0, 0.5);
     }
 
     body {
@@ -112,13 +117,13 @@
       color: var(--magenta-300);
     }
 
-    .modal-overlay {
+    /*.modal-overlay {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 1em;
       background-color: rgba(0, 0, 0, 0.5);
-    }
+    }*/
 
     .modal {
       display: grid;

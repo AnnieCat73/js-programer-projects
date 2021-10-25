@@ -15,10 +15,10 @@ jsModalCloseButton.addEventListener("click", (e) => {
 const modalOverlay = document.querySelector(".modal-overlay");
 
 
-modalOverlay.addEventListener("click", e => {
+/*modalOverlay.addEventListener("click", e => {
   document.body.classList.remove("modal-is-open");
   console.log(e.target);//<div class="modal-overlay"
-});
+});*/
 
 //BUT HERE CAN STILL CLOSE WHEN CLICK IN BUTTON/INSIDE MODAL
 
@@ -55,7 +55,7 @@ modalOverlay.addEventListener('click', event => {
     // Close modal
     document.body.classList.remove('modal-is-open')
   }
-}); //OR BETTER CODE*/
+}); //OR BETTER CODE
 
 modalOverlay.addEventListener('click', event => {
   if (!event.target.closest('.modal')) {
@@ -72,5 +72,11 @@ the "btns" clip.
   <li><button></button></li>
   <li><button></button></li>
    etc
-</ul>*/
-
+</ul>
+//////////////////////////////////////////???????*/
+modalOverlay.addEventListener('click', event => {
+  if (!event.target.closest('.modal')) {
+    // Close modal
+    document.body.classList.remove('modal-is-open')
+  }
+});
