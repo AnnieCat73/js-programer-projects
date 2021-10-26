@@ -560,3 +560,29 @@ slides.forEach((slide, index) => {
   slide.style.left = slideWidth * index + 'px';
 })
 
+
+CAROUSEL - UPDATING THE DOTS WITH EVENT DELEGATION
+
+We should listen for the event on the closest possible ancestor parent.
+In this case, the closest possible ancestor parent is.carousel - dots.
+
+< div class="carousel__dots" >
+  <button class="carousel__dot is-selected"></button>
+  <button class="carousel__dot"></button>
+  <button class="carousel__dot"></button>
+</ >
+
+  The callback triggers whenever you click inside dotsContainer.
+It triggers even if you click on the spaces between the dots.
+To ensure this happens, we make sure the user clicks on a dot
+with either closest or matches * /
+
+
+const dotContainer = carousel.querySelector(".carousel-dots");
+dotContainer.addEventListener("click", e => {
+  const dot = e.target.closest("button");
+  console.log(dot);//<button class="carousel-dot is-selected">
+  if (dot) {
+    //Do something
+  }
+});
