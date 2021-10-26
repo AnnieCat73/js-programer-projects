@@ -73,7 +73,7 @@ Add is-selected to the tab content to show it
 
 you can use querySelectorAll to select the tabs. Then, you loop through 
 each tab with forEach, 
-and use addEventListener to add an event listener to each tab.*/
+and use addEventListener to add an event listener to each tab.
 
 
 //1)
@@ -126,7 +126,7 @@ content-3), SO:
   </div>
 </div>
 
-When a user clicks a .tab, we get the target from data-target.*/
+When a user clicks a .tab, we get the target from data-target.
 
 const tabby = document.querySelector('.tabby');//so can select tabContent
 
@@ -146,7 +146,7 @@ tabs.forEach(tab => {
 Here’s a simple way to do these two step:
 
 a)We remove is-selected from every tab.
-b)We add is-selected back to the clicked tab.*/
+b)We add is-selected back to the clicked tab.
 
 tabs.forEach(tab => {
   tab.addEventListener('click', event => {
@@ -165,7 +165,7 @@ SELECTING A TAB-CONTENT
 We also need to do two things to select a tab-content:
 
 1)Remove is-selected from other tab content to hide them.
-2)Add is-selected to the tab content to show it.*/
+2)Add is-selected to the tab content to show it.
 
 const tabContents = Array.from(tabby.querySelectorAll('.tab-content'))
 
@@ -179,8 +179,8 @@ tabs.forEach(tab => {
 
 //OR EVERYTHING IN SHORT
 
-const tabby = document.querySelector('.tabby');
-const tabs = Array.from(tabby.querySelectorAll('.tab'));
+//const tabby = document.querySelector('.tabby');
+//const tabs = Array.from(tabby.querySelectorAll('.tab'));
 const tabContents = Array.from(tabby.querySelectorAll('.tab-content'));
 
 tabs.forEach(tab => {
@@ -196,4 +196,77 @@ tabs.forEach(tab => {
     tabContents.forEach(c => c.classList.remove('is-selected'));
     tabContent.classList.add('is-selected');
   });
+});*/
+
+//WITH EVENT DELEGATION AS HAS THIS PATTERN:
+const tabs = Array.from(document.querySelectorAll('.tab'))
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', _ => {
+    // ...
+  })
+})
+
+/*When you use event delegation, you want to attach one event listener to the closest common ancestor that makes sense. In this case, this ancestor is .tabs.
+
+<div class="tabs">
+  <button class="tab is-selected"> ... </button>
+  <button class="tab"> ... </button>
+  <button class="tab"> ... </button>
+</div>*/
+
+const tabby = document.querySelector('.tabby');
+const tabsList = tabby.querySelector('.tabs');
+
+tabsList.addEventListener('click', event => {
+  // Do something
+});
+
+/*So need to:
+
+1)Find the clicked tab
+2)Find the corresponding tab content
+3)Remove is-selected from other tabs to de-emphasize them
+4)Add is-selected to the clicked tab to emphasize it
+5)Remove is-selected from other tab content to hide them
+6)Add is-selected to the corresponding tab-content to show it
+Here, we can use event.target to find the clicked tab.*/
+
+tabsList.addEventListener('click', event => {
+  const tab = event.target
+  console.log(tab);
+});
+
+//Once we know the clicked tab, we can get the corresponding 
+//tab-content through the data-target attribute.
+
+tabsList.addEventListener('click', event => {
+  const tab = event.target;
+  const target = tab.dataset.target;
+  const tabContent = tabby.querySelector('#' + target);
+});
+
+/*We remove is-selected from other tabs to de-emphasize them. 
+We also add is-selected to the clicked tab to emphasize it.*/
+
+// ...
+const tabs = Array.from(tabby.querySelectorAll('.tab'))
+
+tabsList.addEventListener('click', event => {
+  // ...
+  // Selects a tab
+  tabs.forEach(t => t.classList.remove('is-selected'))
+  tab.classList.add('is-selected')
+});
+/*Finally, we remove is - selected from other tab - content to hide them. 
+We also add is - selected to the target tab - content to show it.*/
+
+// ...
+const tabContents = Array.from(tabby.querySelectorAll('.tab-content'))
+
+tabsList.addEventListener('click', event => {
+  // ...
+  // Selects the corresponding tab content
+  tabContents.forEach(c => c.classList.remove('is-selected'))
+  tabContent.classList.add('is-selected')
 });

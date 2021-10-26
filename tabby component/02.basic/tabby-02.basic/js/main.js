@@ -15,4 +15,5 @@ tabs.forEach(tab => {
     tabContents.forEach(c => c.classList.remove('is-selected'))
     tabContent.classList.add('is-selected')
   })
-})
+});
+
