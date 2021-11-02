@@ -391,7 +391,11 @@ dots.forEach(dot => {
     //getComputedStyle 
     const destination = getComputedStyle(slideToShow).left;
     //and show the slide by changing .carousel-contents left position
-    contents.style.left = "-" + destination;
+
+    //FOR TRANSITONS CHANGE THIS
+    //contents.style.left = "-" + destination;
+    // replace with this NB DOES WORK!!
+    contents.style.transform = 'translateX(-' + destination + ')'
 
     //3e)Then need to update location of .is-selected as otherwise prev/next
     //btns won't work! TO DO THIS NEED TO REMOVE .is-selected for current
@@ -561,7 +565,7 @@ slides.forEach((slide, index) => {
 })
 
 
-CAROUSEL - UPDATING THE DOTS WITH EVENT DELEGATION
+/*CAROUSEL - UPDATING THE DOTS WITH EVENT DELEGATION
 
 We should listen for the event on the closest possible ancestor parent.
 In this case, the closest possible ancestor parent is.carousel - dots.
@@ -585,4 +589,29 @@ dotContainer.addEventListener("click", e => {
   if (dot) {
     //Do something
   }
-});
+});*/
+
+
+/* CAROUSEL ANIMATIONS
+
+To switch slides with transforms, you need two things:
+
+You need to set the correct transform value with JavaScript.
+You need to create a transition for the transform property.
+The correct transform value is the same as the correct left value. This applies for all three event listeners.
+
+// remove this
+contents.style.left = '-' + destination
+// replace with this
+contents.style.transform = 'translateX(-' + destination + ')'
+
+To transition the transform property, you set transform in transition.
+
+/* replace with this
+.carousel-contents {
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+}
+
+
+*/
