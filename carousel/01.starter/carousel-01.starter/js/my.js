@@ -615,3 +615,56 @@ To transition the transform property, you set transform in transition.
 
 
 */
+
+/*CAROUSEL WITH USEFUL JS FEATURES - CAN CHANGE TO USE THE FOLLOWING
+
+1) USING ARRAY SPREAD
+
+You can replace Array.from with the spread operator if you wish to:
+
+// Change these
+const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+const dots = Array.from(carousel.querySelectorAll('.carousel-dot'))
+// To these
+const slides = [...carousel.querySelectorAll('.carousel-slide')]
+const dots = [...carousel.querySelectorAll('.carousel-dot')]
+
+2) USING TEMPLATE LITERALS
+
+We can use template literals to move each slide.
+
+// Change this
+contents.style.transform = 'translateX(-' + destination + ')';
+// To this
+contents.style.transform = `translateX(-${destination})`;
+
+3) EARLY RETURNS
+
+// Change this
+dotsContainer.addEventListener('click', event => {
+  const dot = event.target.closest('button')
+  if (dot) {
+    // Stuff here
+  }
+})
+// To this
+dotsContainer.addEventListener('click', event => {
+  const dot = event.target.closest('button')
+  if (!dot) return
+
+  // Stuff here
+})
+
+4) JAVASCRIPT ARRAY FEATURES
+
+When we searched for targetIndex in dot container’s event handler,
+we used a for loop. We can replace this with findIndex.
+
+let clickedDotIndex
+
+for (let index = 0; index < dots.length; index++) {
+  if (dots[index] === dot) {
+    clickedDotIndex = index;
+  }
+}
+const clickedDotIndex = dots.findIndex(d => d === dot);
