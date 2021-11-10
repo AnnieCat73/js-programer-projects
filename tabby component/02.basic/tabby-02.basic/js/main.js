@@ -17,3 +17,13 @@ tabs.forEach(tab => {
   })
 });
 
+/*CAN CHANGE TABBY USING THE SPREAD OPERATOR
+
+// Change this
+const tabs = Array.from(tabby.querySelectorAll('.tab'));
+const tabContents = Array.from(tabby.querySelectorAll('.tab-content'));
+
+// To this
+const tabs = [...tabby.querySelectorAll('.tab')];
+const tabContents = [...tabby.querySelectorAll('.tab-content')];
+
