@@ -94,3 +94,52 @@ firstAccordionHeader.addEventListener('click', event => {
 /*firstAccordionHeader.addEventListener('click', event => {
   firstAccordion.classList.toggle('is-open')
 })*/
+
+/*OTHER STUFF WE CAN CHANGE HERE
+
+1)USING EARLY RETURNS
+
+From this:
+
+accordionContainer.addEventListener('click', event => {
+  const accordionHeader = event.target.closest('.accordion__header')
+
+  if (accordionHeader) {
+    // Open and close accordion
+  }
+})
+
+To this: We can simplify this with an early return.
+
+accordionContainer.addEventListener('click', event => {
+  const accordionHeader = event.target.closest('.accordion__header')
+  if (!accordionHeader) return
+
+  // Open and close accordion
+})
+
+2) USING TERNARY OPERATORS
+
+When we get the height of the accordion, we did this:
+
+let height;
+
+if (accordion.classList.contains('is-open')) {
+  height = 0;
+} else {
+  height = accordionInner.getBoundingClientRect().height;
+}
+We can rewrite this with a ternary operator.
+
+const height = accordion.classList.contains('is-open');
+  ? 0;
+  : accordionInner.getBoundingClientRect().height;
+
+3) USING TEMPLATE LIETERALS
+
+From this:
+accordionContent.style.height = height + 'px';
+We can simplify this a bit with template literals.
+
+To this:
+accordionContent.style.height = `${height}px`;
