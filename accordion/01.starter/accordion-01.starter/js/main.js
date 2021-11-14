@@ -142,4 +142,144 @@ accordionContent.style.height = height + 'px';
 We can simplify this a bit with template literals.
 
 To this:
-accordionContent.style.height = `${height}px`;
+accordionContent.style.height = `${height}px`;/*
+
+
+/*MORE REFACTORING WITH BEST PRACTICES IN MIND
+
+SO CODE SO FAR FOR ACCORDION:
+
+const accordionContainer = document.querySelector('.accordion-container');
+
+accordionContainer.addEventListener('click', event => {
+  const accordionHeader = event.target.closest('.accordion-header')
+  if (!accordionHeader) return
+
+  const accordion = accordionHeader.parentElement;
+  const accordionContent = accordionHeader.nextElementSibling;
+  const accordionInner = accordionContent.children[0];
+  const height = accordion.classList.contains('is-open');
+    ? 0
+    : accordionInner.getBoundingClientRect().height;
+
+  accordion.classList.toggle('is-open');
+  accordionContent.style.height = `${height}px`;
+});
+
+FROM THE ABOVE WE CAN REFACTOR WITH BEST PRACTICES
+
+1) First two lines in the event listener
+
+The first two lines of code in the event listener tell us whether we want the event
+listener to do anything.
+SO WE SHOULD NOT MOVE THEM AWAY - STATY THE SAME
+
+accordionContainer.addEventListener('click', event => {
+  // These will stay in the event listener
+  const accordionHeader = event.target.closest('.accordion-header');
+  if (!accordionHeader) return
+  // ...
+});
+
+2)Three of the next four lines of code are used to get the .accordion-inner's height.
+SO FROM THIS:
+
+const accordion = accordionHeader.parentElement
+
+  // These three lines are used to get content's height
+  const accordionContent = accordionHeader.nextElementSibling;
+  const accordionInner = accordionContent.children[0];
+  const height = accordion.classList.contains('is-open');
+    ? 0
+    : accordionInner.getBoundingClientRect().height;;
+  // ...
+});
+TO
+(This code is imperative. You have to go through it to understand what it does.
+We can make the code declarative by creating a function.)
+
+const getContentHeight = () => {
+  const accordionContent = accordionHeader.nextElementSibling;
+  const accordionInner = accordionContent.children[0];
+  const height = accordion.classList.contains('is-open');
+    ? 0;
+    : accordionInner.getBoundingClientRect().height;
+}
+When we call getContentHeight, we expect to get a height value. To get a height
+value, we need to return height from getContentHeight.
+
+const getContentHeight = () => {
+  const accordionContent = accordionHeader.nextElementSibling;
+  const accordionInner = accordionContent.children[0];
+  return accordion.classList.contains('is-open');
+    ? 0;
+    : accordionInner.getBoundingClientRect().height;
+}
+
+Now, we can see getContentHeight requires two variables:
+
+1) accordionHeader. This is used to get accordionContent and then accordionInner.
+2) accordion. We used this to check whether the accordion is opened.
+SO:
+const getContentHeight = accordion => {
+  const accordionInner = accordion.querySelector('.accordion-inner');
+
+  if (accordion.classList.contains('is-open')) return 0;
+  return accordionInner.getBoundingClientRect().height;
+};
+
+3)Last two lines
+
+accordionContainer.addEventListener('click', event => {
+  // ...
+  accordion.classList.toggle('is-open');
+  accordionContent.style.height = `${height}px`;
+})
+We can put them in a function that says updateAccordion.
+
+const updateAccordion = () => {
+  accordion.classList.toggle('is-open');
+  accordionContent.style.height = `${height}px`;
+}
+
+accordionContainer.addEventListener('click', event => {
+  // ...
+  accordion.classList.toggle('is-open')
+  accordionContent.style.height = `${height}px`
+})
+
+We can put them in a function that says updateAccordion.
+
+const updateAccordion = () => {
+  accordion.classList.toggle('is-open');
+  accordionContent.style.height = `${height}px`;
+}
+
+If the function name says updateAccordion, we expect code inside update the accordion only. 
+So we pass height into updateAccordion.
+
+const updateAccordion = (accordion, height) => {
+  const accordionContent = accordion.querySelector('.accordion__content')
+
+  // Updates the accordion
+  accordion.classList.toggle('is-open')
+  accordionContent.style.height = `${height}px`
+}
+Using updateAccordion:
+
+accordionContainer.addEventListener('click', event => {
+  // ...
+  updateAccordion(accordion, height);
+})
+
+4) Ordering functions and variables
+In this case, none of our functions require variables from the global scope. We can 
+declare them upfront before they’re used.
+
+const getContentHeight = accordion => { /* ... */ }
+const updateAccordion = (accordion, height) => { /* ... */ }
+
+const accordionContainer = document.querySelector('.accordion-container')
+accordionContainer.addEventListener('click', event => {
+  // ...
+});
